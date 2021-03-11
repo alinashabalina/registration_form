@@ -1,0 +1,47 @@
+.form_text {
+font-weight: bold;
+font-size: 18px;
+}
+.form_field, .password_field {
+    height: 20px;
+}
+.red {
+    border: 1px solid red;
+}
+.green {
+    border: 1px solid green;
+}
+.link_front_page {
+    cursor: pointer;
+    color: #0e88e7;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+span.checkbox:hover * {
+    color: #0e88e7;
+    cursor: pointer;
+}
+.copy_button, .button {
+border: none;
+border-radius: 4px;
+background-color:#b7d7e8; 
+color: black;
+font-size: 17px;
+height: 25px;
+}
+.subheader {
+font-style: italic;
+font-size: 14px;
+}
+.form_validation_field {
+    display: none
+}
+.validation_text {
+color:rgb(194, 29, 29)
+}
+
+:disabled {
+    background-color: #e0e0e0;
+}

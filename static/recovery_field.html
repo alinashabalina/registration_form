@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+<meta charset='utf-8'>
+<link rel="stylesheet" href="formpage.css">
+<title>Generate a new password</title>
+</head>
+<body>
+<main>
+<h1>Generate a new password</h1>
+<h4 class = 'subheader'>Click the button to generate a new password</h4>
+<form class = 'form'>
+<table>
+<tr>
+<td><label for = 'default_password' class = 'form_text'>Your new defaut password:</label></td>
+<td><input type = 'text' name = 'default_password' id = 'default_password' class = 'password_field' placeholder = 'Copy the password here' readonly></td>
+<td><button class = 'copy_button' disabled>Copy</button>
+</tr>
+<br>
+<br>
+<tr>
+<td><button class = 'copy_button'>Generate your password</button></td>
+</tr>
+</table>
+<br>
+<table>
+<tr>
+<td><span class = 'form_validation_field validation_text' id = 'form_validation_field'></span></td>
+</tr>
+</table>
+</form>
+</main>
+<script src="passwordrecovery.js"></script>
+</body>
+</html>
