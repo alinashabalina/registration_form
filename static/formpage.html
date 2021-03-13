@@ -1,59 +1,65 @@
 <!DOCTYPE html>
-<html lang = 'en'>
- <head>
+<html lang='en'>
+
+<head>
   <meta charset='utf-8'>
-  <link rel="stylesheet" href="formpage.css">
+  <link rel="stylesheet" href="/formpage.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap" rel="stylesheet">
   <title>Registration</title>
- </head>
- <body>
- <main>
- <h1>Registration form</h1>
- <h4 class = 'subheader'>Sign up to learn more information in your personal area</h4>
-  <form class = 'form'>
+</head>
+
+<body>
+  <main>
+    <h1>Registration form</h1>
+    <h4 class='subheader'>Sign up to learn more information in your personal area</h4>
+    <form class='form'>
+      <table>
+        <tr>
+          <td><label for='name' class='form_text'>Enter your name</label></td>
+          <td><input type='text' name='name' id='name' class='form_field' placeholder='John' maxlength='100'></td>
+        </tr>
+        <tr>
+          <td><label for='surname' class='form_text'>Enter your surname</label></td>
+          <td><input type='text' name='surname' id='surname' class='form_field' placeholder='Smith' maxlength='100'>
+          </td>
+        </tr>
+        <tr>
+          <td><label for='email' class='form_text'>Enter your email</label></td>
+          <td><input type='email' name='email' id='email' class='form_field' placeholder='j.smith@johnsmith.com'
+              maxlength='100'></td>
+        </tr>
+      </table>
+      <br>
+      <span class='checkbox'><input type='checkbox' id='terms' class='terms'>
+        <label for='terms'>I agree with the terms of service</label></span>
+      <br>
+      <br>
+      <table>
+        <tr>
+          <td><input type='submit' value='Submit' class='button'></td>
+          <td><span class='form_validation_field validation_text' id='form_validation_field'></span></td>
+        </tr>
+      </table>
+    </form>
+    <br>
+    <br>
     <table>
-    <tr>
-    <td><label for = 'name' class = 'form_text'>Enter your name</label></td>
-    <td><input type = 'text' name = 'name' id = 'name' class = 'form_field' placeholder = 'John'></td>
-    </tr>
-    <tr>
-    <td><label for = 'surname' class = 'form_text'>Enter your surname</label></td>
-    <td><input type = 'text' name = 'surname' id = 'surname' class = 'form_field' placeholder = 'Smith'></td>
-    </tr>
-    <tr>
-    <td><label for = 'email' class = 'form_text'>Enter your email</label></td>
-    <td><input type = 'email' name = 'email' id = 'email' class = 'form_field' placeholder = 'j.smith@johnsmith.com'></td>
-    </tr>
+      <tr>
+        <td><label for='default_password' class='form_text'>Your defaut password:</label></td>
+        <td><input type='text' name='default_password' id='default_password' class='password_field'
+            placeholder='Appears after registration' readonly></td>
+        <td><button class='copy_button' disabled>Copy</button>
+      </tr>
     </table>
     <br>
-    <span class = 'checkbox'><input type = 'checkbox' id = 'terms' class = 'terms'>
-    <label for = 'terms'>I agree with the terms of service</label></span>
+    <br>
+    <a href='/login' class='link_front_page'>Already registered? Sign in</a>
     <br>
     <br>
-    <table>
-    <tr>
-    <td><input type = 'submit' value = 'Submit' class = 'button'></td>
-    <td><span class = 'form_validation_field validation_text' id = 'form_validation_field'></span></td>
-    </tr>
-    </table>
-  </form>
-  <br>
-  <br>
-  <table>
-    <tr>
-    <td><label for = 'default_password' class = 'form_text'>Your defaut password:</label></td>
-    <td><input type = 'text' name = 'default_password' id = 'default_password' class = 'password_field' placeholder = 'Appears after registration' readonly></td>
-    <td><button class = 'copy_button' disabled>Copy</button>
-    </tr>
-  </table>
-  <br>
-  <br>
-  <a href = 'http://127.0.0.1:5000/loginpage.html' class = 'link_front_page'>Already registered? Sign in</a>
-  <br>
-  <br>
-  <a href = 'http://127.0.0.1:5000/passwordrecovery.html' class = 'link_front_page'>Recover you password</a>
- </main>
- <script src="formpage.js"></script>
- </body>
+    <a href='/password' class='link_front_page'>Recover you password</a>
+  </main>
+  <script src="/formpage.js"></script>
+</body>
+
 </html>

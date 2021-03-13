@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang='en'>
+
 <head>
-<meta charset='utf-8'>
-<link rel="stylesheet" href="formpage.css">
-<title>Log in</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="/formpage.css">
+    <title>Log in</title>
 </head>
+
 <body>
-<main>
-<h1>Log in into your account</h1>
-<h4 class = 'subheader'>Sign up to learn more information in your personal area</h4>
-<form class = 'form' class = 'form'>
-<table>
-<tr>
-<td><label for = 'email' class = 'form_text'>Enter your email</label></td>
-<td><input type = 'email' name = 'email' id = 'email' class = 'form_field' placeholder = 'j.smith@johnsmith.com'></td>
-</tr>
-<tr>
-<td><label for = 'password' class = 'form_text'>Enter your password</label></td>
-<td><input type = 'password' name = 'password' id = 'password' class = 'form_field'></td>
-</table>
-</tr>
-<br>
-<table>
-<tr>
-<td><input type = 'submit' value = 'Submit' class = 'button'></td>
-<td><span class = 'form_validation_field validation_text' id = 'form_validation_field'></span></td>
-</tr>
-</table>
-</form>
-</main>
-<script src = 'loginpage.js'></script>
+    <main>
+        <h1>Log in into your account</h1>
+        <h4 class='subheader'>Sign up to learn more information in your personal area</h4>
+        <form class='form' class='form'>
+            <table>
+                <tr>
+                    <td><label for='email' class='form_text'>Enter your email</label></td>
+                    <td><input type='email' name='email' id='email' class='form_field'
+                            placeholder='j.smith@johnsmith.com' maxlength='100'></td>
+                </tr>
+                <tr>
+                    <td><label for='password' class='form_text'>Enter your password</label></td>
+                    <td><input type='password' name='password' id='password' class='form_field'></td>
+            </table>
+            </tr>
+            <br>
+            <table>
+                <tr>
+                    <td><input type='submit' value='Submit' class='button'></td>
+                    <td><span class='form_validation_field validation_text' id='form_validation_field'></span></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <a href='/' class='link_front_page'>Not registered yet? Sign up</a>
+            <br>
+            <br>
+            <a href='/password' class='link_front_page'>Recover you password</a>
+        </form>
+    </main>
+    <script src='/loginpage.js'></script>
 </body>
+
 </html>
