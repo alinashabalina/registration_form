@@ -25,4 +25,4 @@ button.addEventListener('click', function (evt) {
 copy_button.addEventListener('click', function () {
     password_field.select();
     document.execCommand("copy")
-})>>
+})
