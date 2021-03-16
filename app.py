@@ -94,3 +94,20 @@ def generate_password():
             'code': 400,
             'reason': 'Your unique link seems to have expired. Please try again'
         }
+
+@app.route('/buylikes/', methods = ['POST'])
+def likes_purchase():
+    ui = User()
+    purchase = ui.likes_purchase(request.get_json()['user_id'],request.get_json()['number'])
+    if purchase != None:
+        return {
+            'code': 200,
+            'user_id': purchase.user_id,
+            'likes_balance': purchase.likes,
+            'total_payments': purchase.payments
+        }
+    else:
+        return {
+            'code': 400,
+            'reason': 'Something went wrong. Please try again later'
+        }

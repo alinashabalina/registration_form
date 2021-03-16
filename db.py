@@ -16,13 +16,16 @@ def create_password(length=16):
     return password
 
 
-email_link = sa.Table("registration_link", Base.metadata,
+email_link = sa.Table('registration_link', Base.metadata,
                       sa.Column('email_id', sa.Integer,
                                 sa.ForeignKey('reg_form.id')),
                       sa.Column('link_id', sa.Integer,
                                 sa.ForeignKey('recovery_password.id')),
                       )
 
+info = sa.Table('info', Base.metadata, sa.Column('user_id', sa.Integer,sa.ForeignKey('reg_form.id')),
+sa.Column('user_info', sa.Integer, sa.ForeignKey('user_info.id'))
+)
 
 class Registration(Base):
     __tablename__ = 'reg_form'
@@ -41,6 +44,7 @@ class Registration(Base):
         'Recovery', secondary=email_link, back_populates='registrations')
 
 
+
 class Recovery(Base):
     __tablename__ = 'recovery_password'
     id = sa.Column(sa.Integer, primary_key=True)
@@ -48,6 +52,17 @@ class Recovery(Base):
 
     registrations = relationship(
         'Registration', secondary=email_link, back_populates='recoveries')
+
+
+class User_info(Base):
+    __tablename__ = 'user_info'
+    id = sa.Column(sa.Integer, primary_key = True)
+    likes = sa.Column(sa.Integer, nullable=False)
+    payments = sa.Column(sa.Integer, nullable = False)
+    user_id = sa.Column(sa.Integer, nullable = False)
+    liked_photos = sa.Column(sa.Integer, nullable = True)
+    
+
 
 
 class Role:
@@ -114,3 +129,30 @@ class User(Role):
             return default_password
         else:
             return None
+
+
+    def likes_purchase(self, user_id, number):
+        payment_for_one_like = 10
+        payment = int(number)*payment_for_one_like
+        purchase = self.session.query(User_info).filter(User_info.user_id == user_id).scalar()
+        if purchase != None:
+            payment_updated = int(purchase.payments) + payment
+            likes_updated = int(purchase.likes) + int(number)
+            purchase.likes = likes_updated
+            purchase.payments = payment_updated
+            self.session.commit()
+            return purchase
+        else:
+            purchase = User_info(likes = number, payments = payment, user_id = user_id)
+            self.session.add(purchase)
+            self.session.commit()
+            return purchase
+            
+
+
+            
+            
+
+
+        
+
