@@ -111,3 +111,16 @@ def likes_purchase():
             'code': 400,
             'reason': 'Something went wrong. Please try again later'
         }
+
+
+@app.route('/userinfo', methods = ['POST'])
+def get_user_info():
+    ui = User()
+    info = ui.get_user_info(request.get_json()['user_id'])
+    if info != None:
+        return {
+            'code': 200,
+            'user_id': info.user_id,
+            'likes_balance': info.likes,
+            'total_payments': info.payments
+        }

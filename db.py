@@ -149,8 +149,13 @@ class User(Role):
             return purchase
             
 
+    def get_user_info(self, user_id):
+        user_info = self.session.query(User_info).filter(User_info.user_id == user_id).scalar()
+        if user_info != None:
+            return user_info
+        else:
+            return None
 
-            
             
 
 
