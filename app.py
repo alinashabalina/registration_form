@@ -124,3 +124,8 @@ def get_user_info():
             'likes_balance': info.likes,
             'total_payments': info.payments
         }
+    else:
+        return {
+            'code': 400,
+            'reason': 'Something went wrong. Please try again later'
+        }

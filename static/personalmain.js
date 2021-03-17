@@ -4,13 +4,16 @@ var button = document.querySelector('.button')
 var path = window.location.pathname.split('/').pop()
 var balance_field = document.getElementById('balance_field')
 
-window.onload = function () {fetch('/userinfo', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        user_id: path
-    })})
-    .then(response=>response.json())
-    .then(response=>balance_field.value=response['likes_balance'])
+window.onload = function () {
+    fetch('/userinfo', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_id: path
+        })
+    })
+    .then(response => response.json())
+    .then(response => { if (response['code'] === 200) { balance_field.value = response['likes_balance'] } else alert(response['reason']) }
+    )
 }
 
 
