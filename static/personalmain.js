@@ -3,8 +3,11 @@ var field = document.querySelector('.form_field')
 var button = document.querySelector('.button')
 var path = window.location.pathname.split('/').pop()
 var balance_field = document.getElementById('balance_field')
+var liked_photos = document.getElementById('liked_photos')
+var total_payments = document.getElementById('total_payments')
+var loaders = document.querySelectorAll('.loader')
 
-window.onload = function () {
+window.onload = function () {balance_field.value = ''; liked_photos.value = ''; total_payments.value = ''; for (let loader of loaders) {loader.hidden = false}; 
     fetch('/userinfo', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -12,7 +15,7 @@ window.onload = function () {
         })
     })
     .then(response => response.json())
-    .then(response => { if (response['code'] === 200) { balance_field.value = response['likes_balance'] } else alert(response['reason']) }
+    .then(response => {for (let loader of loaders) {loader.hidden = true}; if (response['code'] === 200) { balance_field.value = response['likes_balance']; liked_photos.value = response['total_likes']; total_payments.value = response['total_payments'] } else alert(response['reason']) }
     )
 }
 

@@ -60,7 +60,7 @@ class User_info(Base):
     likes = sa.Column(sa.Integer, nullable=False)
     payments = sa.Column(sa.Integer, nullable = False)
     user_id = sa.Column(sa.Integer, nullable = False)
-    liked_photos = sa.Column(sa.Integer, nullable = True)
+    liked_photos = sa.Column(sa.Integer, nullable = False, default = 0)
     
 
 

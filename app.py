@@ -122,7 +122,8 @@ def get_user_info():
             'code': 200,
             'user_id': info.user_id,
             'likes_balance': info.likes,
-            'total_payments': info.payments
+            'total_payments': info.payments,
+            'total_likes': info.liked_photos
         }
     else:
         return {
