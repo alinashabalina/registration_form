@@ -63,6 +63,12 @@ class User_info(Base):
     liked_photos = sa.Column(sa.Integer, nullable = False, default = 0)
     
 
+class Photo_info(Base):
+    __tablename__ = 'photo_info'
+    id = sa.Column(sa.Integer, primary_key = True)
+    route = sa.Column(sa.String, nullable = False)
+    description = sa.Column(sa.String(150), nullable = False)
+    total_likes = sa.Column(sa.Integer, nullable = False, default = 0)
 
 
 class Role:
@@ -156,7 +162,20 @@ class User(Role):
         else:
             return None
 
-            
+    
+    def like_a_photo(self, user_id, photo_id):
+        user_info = self.session.query(User_info).filter(User_info.user_id == user_id).scalar()
+        photo = self.session.query(Photo_info).filter(Photo_info.id == photo_id).scalar()
+        if user_info != None and photo != None:
+            liked_photos_updated = int(user_info.liked_photos)+1
+            user_info.liked_photos = liked_photos_updated
+            total_likes_updated = int(photo.total_likes)+1
+            photo.total_likes = total_likes_updated
+            self.session.commit()
+            response = {'user_info': user_info, 'photo': photo}
+            return response
+        else:
+            return None
 
 
         

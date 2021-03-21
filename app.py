@@ -30,6 +30,11 @@ def show_page_recover(link_id):
     return app.send_static_file('recovery_field.html')
 
 
+@app.route('/gallery', methods = ['GET'])
+def show_page_gallery():
+    return app.send_static_file('gallery.html')
+
+
 @app.route('/register/', methods=['POST'])
 def register():
     ui = User()
@@ -129,4 +134,21 @@ def get_user_info():
         return {
             'code': 400,
             'reason': 'Something went wrong. Please try again later'
+        }
+
+
+@app.route('/like', methods = ['POST'])
+def like_a_photo():
+    ui = User()
+    like = ui.like_a_photo(request.get_json()['user_id'], request.get_json()['photo_id'])
+    if like != None:
+        return {
+            'code': 200,
+            'user_id': like['user_info']['user_id'],
+            'liked_photos': like['photo']['total_likes']
+        }
+    else: 
+        return {
+            'code': 400,
+            'reason':'Something went wrong. Please try again later'
         }

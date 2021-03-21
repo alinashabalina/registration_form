@@ -68,3 +68,24 @@ color:rgb(194, 29, 29)
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+  td {
+      padding-top: 50px;
+  }
+
+.table {
+    table-layout: fixed;
+    margin-top: 100px;
+    margin-bottom: 20 px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.main_header {
+    margin-left: 580px;
+}
+rect {
+    fill:rgb(131, 131, 131)
+}
+rect:hover {
+    fill: rgb(66, 66, 66);
+}
