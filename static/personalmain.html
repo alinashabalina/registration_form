@@ -38,6 +38,18 @@
 </tr>
 </table>
 </form>
+<br>
+<br>
+<br>
+<h2> Upload photos to the gallery</h2>
+<form action='/uploader' method = 'post' enctype='multipart/form-data'>
+<input type = 'file' name = 'photo' accept='.jpg, .jpeg, .png' id = 'photo'>
+<br>
+<br>
+<input type = 'text' name = 'description' class = 'form_field' id = 'description' placeholder = 'Write some words here'>
+<input type = 'text' name = 'user_id' value = '0' id = 'hidden' hidden>
+<input type = 'submit' value = 'Submit' class = 'button'>
+</form>
 <script src = '/personalmain.js'></script>
 </main>
 </html>

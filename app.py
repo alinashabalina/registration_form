@@ -1,8 +1,14 @@
-from db import User
+from db import User, System
 from flask import Flask, request, send_from_directory
 from flask.json import jsonify
-
+from werkzeug.utils import secure_filename
+ 
 app = Flask(__name__, static_url_path='')
+
+app.config['UPLOAD_FOLDER'] = 'photos'
+app.config['MAX_CONTENT_PATH'] = 100
+
+
 
 
 @app.route('/')
@@ -152,3 +158,42 @@ def like_a_photo():
             'code': 400,
             'reason':'Something went wrong. Please try again later'
         }
+
+
+@app.route('/int_update_likes', methods = ['POST'])
+def update_likes():
+    ui = System()
+    update = ui.likes_updated()
+    return {
+        'code': 200
+    }
+
+
+@app.route('/int_gallery', methods = ['POST'])
+def update_gallery():
+    ui = System()
+    render = ui.render_photos()
+    return {
+        'code': 200,
+        'pic1': render[0],
+        'pic2': render[1],
+        'pic3': render[2],
+        'pic4': render[3],
+        'pic5': render[4],
+        'pic6': render[5]
+    }
+
+
+@app.route('/uploader', methods = ['POST'])
+def upload_file():
+   f = request.files['photo']
+   name = secure_filename(f.filename)
+   f.save(secure_filename(f.filename))
+   ui = User()
+   save = ui.upload_photos(request.form['user_id'], request.form['description'], name)
+   if save != None:
+       return 'OK'
+   else:
+       return 'Something went wrong'
+
+

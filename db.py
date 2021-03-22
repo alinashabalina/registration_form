@@ -1,5 +1,6 @@
 import sqlalchemy as sa
 import random
+from datetime import datetime
 from sqlalchemy import Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -14,6 +15,8 @@ def create_password(length=16):
         password += random.choice(chars)
 
     return password
+
+
 
 
 email_link = sa.Table('registration_link', Base.metadata,
@@ -58,15 +61,18 @@ class User_info(Base):
     __tablename__ = 'user_info'
     id = sa.Column(sa.Integer, primary_key = True)
     likes = sa.Column(sa.Integer, nullable=False)
-    payments = sa.Column(sa.Integer, nullable = False)
+    payments = sa.Column(sa.Integer, nullable = False, default = 0)
     user_id = sa.Column(sa.Integer, nullable = False)
     liked_photos = sa.Column(sa.Integer, nullable = False, default = 0)
+    photos_uploaded = sa.Column(sa.Integer, nullable = False, default = 0)
+    last_updated = sa.Column(sa.DateTime, nullable = False)
     
 
 class Photo_info(Base):
     __tablename__ = 'photo_info'
     id = sa.Column(sa.Integer, primary_key = True)
-    route = sa.Column(sa.String, nullable = False)
+    user_id = sa.Column(sa.Integer, nullable = False)
+    name = sa.Column(sa.String, nullable = False)
     description = sa.Column(sa.String(150), nullable = False)
     total_likes = sa.Column(sa.Integer, nullable = False, default = 0)
 
@@ -92,6 +98,9 @@ class User(Role):
             reg = Registration(name=name, surname=surname,
                                email=email, default_password=default_password)
             self.session.add(reg)
+            self.session.commit()
+            user_info = User_info(likes = 5, user_id = reg.id, last_updated = datetime.now())
+            self.session.add(user_info)
             self.session.commit()
             return default_password
         else:
@@ -178,5 +187,45 @@ class User(Role):
             return None
 
 
+    def upload_photos(self, user_id, description, name):
+        user = self.session.query(User_info).filter(User_info.user_id == user_id).scalar()
+        if user != None:
+            photo = Photo_info(user_id = user_id, name = name, description = description)
+            photos_uploaded_updated = int(user.photos_uploaded)+1
+            user.photos_uploaded = photos_uploaded_updated
+            self.session.add(photo)
+            self.session.commit()
+            return photo
+        else:
+            return None
+        
+
+
+class System(Role):
+
+    def likes_updated(self):
+        needs_updating = self.session.query(User_info).filter(User_info.last_updated <= datetime.now() - datetime.timedelta(days = 1))
+        if needs_updating != None:
+            for everyone in needs_updating:
+                if everyone.likes < 5:
+                    everyone.likes = 5
+                else: 
+                    pass
+                everyone.last_updated = datetime.now()
+                self.session.commit()
+                
+        
+
+    def render_photos(self):
+        photos = self.session.query(Photo_info)
+        chosen = []
+        chosen[0] = random.choice(photos)
+        chosen[1] = random.choice(photos)
+        chosen[2] = random.choice(photos)
+        chosen[3] = random.choice(photos)
+        chosen[4] = random.choice(photos)
+        chosen[5] = random.choice(photos)
+        return chosen
+    
         
 

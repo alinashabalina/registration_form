@@ -6,8 +6,12 @@ var balance_field = document.getElementById('balance_field')
 var liked_photos = document.getElementById('liked_photos')
 var total_payments = document.getElementById('total_payments')
 var loaders = document.querySelectorAll('.loader')
+var hidden_field = document.getElementById('hidden')
+var photo = document.getElementById('photo')
+var description = document.getElementById('description')
 
-window.onload = function () {balance_field.value = ''; liked_photos.value = ''; total_payments.value = ''; for (let loader of loaders) {loader.hidden = false}; 
+
+window.onload = function () {balance_field.value = ''; liked_photos.value = ''; total_payments.value = ''; photo.value = ''; description.value = '';hidden_field.value = path; for (let loader of loaders) {loader.hidden = false}; 
     fetch('/userinfo', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

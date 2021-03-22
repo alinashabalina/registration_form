@@ -46,7 +46,7 @@ color:rgb(194, 29, 29)
     background-color: #f3f1f1;
 }
 .balance_field {
-    width: 40px;
+    width: 60px;
     height: 20px;
     border-radius: 4px;
     text-align: center;
@@ -61,7 +61,7 @@ color:rgb(194, 29, 29)
     animation: spin 1s linear infinite;
     position: relative;
     top: -20px;
-    left: 18px;
+    left: 28px;
   }
   
   @keyframes spin {
