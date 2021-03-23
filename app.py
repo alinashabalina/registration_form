@@ -1,11 +1,11 @@
 from db import User, System
+import os
 from flask import Flask, request, send_from_directory
 from flask.json import jsonify
 from werkzeug.utils import secure_filename
  
 app = Flask(__name__, static_url_path='')
 
-app.config['UPLOAD_FOLDER'] = 'photos'
 app.config['MAX_CONTENT_PATH'] = 100
 
 
@@ -188,7 +188,8 @@ def update_gallery():
 def upload_file():
    f = request.files['photo']
    name = secure_filename(f.filename)
-   f.save(secure_filename(f.filename))
+   os.makedirs('photos', exist_ok=True)
+   f.save(os.path.join('photos', secure_filename(f.filename)))
    ui = User()
    save = ui.upload_photos(request.form['user_id'], request.form['description'], name)
    if save != None:
