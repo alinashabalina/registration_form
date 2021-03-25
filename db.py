@@ -217,14 +217,14 @@ class System(Role):
         
 
     def render_photos(self):
-        photos = self.session.query(Photo_info)
+        photos = self.session.query(Photo_info).all()
         chosen = []
-        chosen[0] = random.choice(photos)
-        chosen[1] = random.choice(photos)
-        chosen[2] = random.choice(photos)
-        chosen[3] = random.choice(photos)
-        chosen[4] = random.choice(photos)
-        chosen[5] = random.choice(photos)
+        for i in range (6):
+            a = random.choice(photos)
+            chosen.append({'name': a.name,
+            'description':a.description,
+            'likes':a.total_likes
+            })
         return chosen
     
         
