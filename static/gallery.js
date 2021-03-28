@@ -1,14 +1,15 @@
-var pic1 = document.getElementById('pic0')
-var pic2 = document.getElementById('pic1')
-var pic3 = document.getElementById('pic2')
-var pic4 = document.getElementById('pic3')
-var pic5 = document.getElementById('pic4')
-var pic6 = document.getElementById('pic5')
+var pics = document.querySelectorAll('.pic')
 var dict = {}
+var img_template = document.querySelector('#img-template').content
+var img_src = img_template.querySelector('.gallery_photo')
+var i = 0
 
-window.onload = function () {fetch ('/int_gallery', {method: POST, headers: { 'Content-Type': 'application/json' }
+window.onload = function () {fetch ('/int_gallery', {method:'POST', headers: { 'Content-Type': 'application/json' }
 })
 .then(response=>response.json())
 .then(response => {dict = response})
 }
 
+for (let pic of pics) {pic.addEventListener('click', 
+function () {let cloned = img_src.cloneNode(false); cloned.src = '/photos/'+String(dict[i]['name']);
+ i+=1; pic.removeChild(pic.querySelector('.svg')); pic.appendChild(cloned)})}

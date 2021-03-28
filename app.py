@@ -15,6 +15,9 @@ app.config['MAX_CONTENT_PATH'] = 100
 def root():
     return app.send_static_file('formpage.html')
 
+@app.route('/photos/<filename>')
+def uploaded_file(filename):
+    return send_from_directory('photos', filename)
 
 @app.route('/login', methods=['GET'])
 def show_page_login():
@@ -175,12 +178,12 @@ def update_gallery():
     render = ui.render_photos()
     return {
         'code': 200,
-        'pic1': render[0],
-        'pic2': render[1],
-        'pic3': render[2],
-        'pic4': render[3],
-        'pic5': render[4],
-        'pic6': render[5]
+        '0': render[0],
+        '1': render[1],
+        '2': render[2],
+        '3': render[3],
+        '4': render[4],
+        '5': render[5]
     }
 
 

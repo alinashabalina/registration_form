@@ -81,11 +81,17 @@ color:rgb(194, 29, 29)
     margin-right: 300px;
 }
 .main_header {
-    margin-left: 580px;
+    margin-left: 40%;
 }
 rect {
     fill:rgb(131, 131, 131)
 }
 rect:hover {
     fill: rgb(66, 66, 66);
+}
+
+img {
+    border-radius: 10%;
+    width: 150px;
+    height: 150px;
 }

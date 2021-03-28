@@ -6,11 +6,14 @@
 </head>
 <body>
     <main>
+      <template id = 'img-template'>
+        <img src = '' class = 'gallery_photo'>
+      </template>
         <h1 class = 'main_header'>The Gallery</h1>
     <table class = 'table'>
         <tr>
             <td>
-    <div id = 'pic0'><svg>
+    <div class = 'pic'><svg class = 'svg'>
         <g>
         <rect width = '40%' height = '200'>
           </rect>
@@ -20,8 +23,8 @@
       </div>
       </td>
       <td>
-        <div id = 'pic1'>
-        <svg>
+        <div class = 'pic'>
+        <svg class = 'svg'>
             <g>
             <rect width = '40%' height = '200'>
               </rect>
@@ -31,8 +34,8 @@
           </div>
       </td>
       <td>
-        <div id = 'pic2'>
-        <svg>
+        <div class = 'pic'>
+        <svg class = 'svg'>
             <g>
             <rect width = '40%' height = '200'>
               </rect>
@@ -45,8 +48,8 @@
 
       <tr>
         <td>
-          <div id = 'pic3'>
-<svg>
+          <div class = 'pic'>
+<svg class = 'svg'>
     <g>
     <rect width = '40%' height = '200'>
       </rect>
@@ -56,8 +59,8 @@
 </div>
   </td>
   <td>
-    <div id = 'pic4'>
-    <svg>
+    <div class = 'pic'>
+    <svg class = 'svg'>
         <g>
         <rect width = '40%' height = '200'>
           </rect>
@@ -67,8 +70,8 @@
     </div>
   </td>
   <td>
-    <div id = 'pic5'>
-    <svg>
+    <div class = 'pic'>
+    <svg class = 'svg'>
         <g>
         <rect width = '40%' height = '200'>
           </rect>
@@ -79,6 +82,7 @@
   </td>
   </tr>
       </table>
+      <script src = '/gallery.js'></script>
     </main>
 </body>
 </html>
